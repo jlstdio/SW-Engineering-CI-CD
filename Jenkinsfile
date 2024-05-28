@@ -5,7 +5,7 @@ pipeline {
       stage('Checkout') {
          steps {
             // Dynamically check out the current branch or specify the correct branch name
-            git branch: (env.BRANCH_NAME ?: 'main'), url: 'URL_TO_YOUR_GIT_REPOSITORY'
+            Checkout scm
          }
       }
       
@@ -19,10 +19,10 @@ pipeline {
       stage('Test') {
          steps {
             // classpath configuration for JUnit Test
-            sh 'javac -cp classes -d test-classes book_junitTest/src/BookTest.java'
-
+            def classpath = "${env.WORKSPACE}/classes:${env.WORKSPACE}/test-classes"
+   
             //run Junit Test
-            sh 'java -cp test-classes:classes org.junit.runner.JUnitCore book_junitTest.src.BookTest'
+            sh "java -cp ${classpath} org.junit.runner.JUnitCore book_junitTest.BookTest > test_results.txt"
          }
       }
       
