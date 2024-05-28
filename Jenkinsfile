@@ -5,7 +5,7 @@ pipeline {
       stage('Checkout') {
          steps {
             // Dynamically check out the current branch or specify the correct branch name
-            Checkout scm
+            checkout scm
          }
       }
       
