@@ -1,6 +1,11 @@
 pipeline {
    agent any
    
+   environment {
+       // Define classpath in the environment section
+       CLASSPATH = "${WORKSPACE}/classes:${WORKSPACE}/test-classes"
+   }
+
    stages {
       stage('Checkout') {
          steps {
@@ -12,31 +17,28 @@ pipeline {
       stage('Build') {
          steps {
             // Compile the Java code
-            sh 'javac -encoding UTF-8 -d classes book_junitTest/src/Book.java'
+            sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/Book.java'
          }
       }
       
       stage('Test') {
          steps {
-            // classpath configuration for JUnit Test
-            classpath = "${env.WORKSPACE}/classes:${env.WORKSPACE}/test-classes"
-   
-            //run Junit Test
-            sh "java -cp ${classpath} org.junit.runner.JUnitCore book_junitTest.BookTest > test_results.txt"
+            // Run JUnit Test using the defined environment classpath
+            sh "java -cp ${env.CLASSPATH} org.junit.runner.JUnitCore book_junitTest.BookTest > ${WORKSPACE}/test_results.txt"
          }
       }
-      
-      post {
-         always {
-            // Archive test results
-            archiveArtifacts 'test_results.txt'
-         }
-         failure {
-            echo 'Build or test failed'
-         }
-         success {
-            echo 'Build and test succeeded'
-         }
+   }
+   
+   post {
+      always {
+         // Archive test results
+         archiveArtifacts artifacts: 'test_results.txt', onlyIfSuccessful: true
+      }
+      failure {
+         echo 'Build or test failed'
+      }
+      success {
+         echo 'Build and test succeeded'
       }
    }
 }
