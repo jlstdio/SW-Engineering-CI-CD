@@ -4,12 +4,14 @@ pipeline {
    stages {
       stage('Checkout') {
          steps {
-            Checkout scm
+            // Dynamically check out the current branch or specify the correct branch name
+            git branch: (env.BRANCH_NAME ?: 'main'), url: 'URL_TO_YOUR_GIT_REPOSITORY'
          }
       }
       
       stage('Build') {
          steps {
+            // Compile the Java code
             sh 'javac -encoding UTF-8 -d classes book_junitTest/src/Book.java'
          }
       }
@@ -21,13 +23,12 @@ pipeline {
 
             //run Junit Test
             sh 'java -cp test-classes:classes org.junit.runner.JUnitCore book_junitTest.src.BookTest'
-            
          }
       }
       
       post {
          always {
-            // 테스트 결과 파일을 저장하기 위해 아카이브
+            // Archive test results
             archiveArtifacts 'test_results.txt'
          }
          failure {
