@@ -19,7 +19,7 @@ pipeline {
       stage('Test') {
          steps {
             // classpath configuration for JUnit Test
-            def classpath = "${env.WORKSPACE}/classes:${env.WORKSPACE}/test-classes"
+            classpath = "${env.WORKSPACE}/classes:${env.WORKSPACE}/test-classes"
    
             //run Junit Test
             sh "java -cp ${classpath} org.junit.runner.JUnitCore book_junitTest.BookTest > test_results.txt"
