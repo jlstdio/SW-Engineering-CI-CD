@@ -4,34 +4,37 @@ pipeline {
    stages {
       stage('Checkout') {
          steps {
-            // Checkout your source code from version control
-            // For example, using Git:
-            git 'https://github.com/your-repo.git'
+            Checkout scm
          }
       }
       
       stage('Build') {
          steps {
-            // Build your Java project
-            // For example, using Maven:
-            sh 'mvn clean package'
+            sh 'javac -encoding UTF-8 -d classes book_junitTest/src/Book.java'
          }
       }
       
       stage('Test') {
          steps {
-            // Run your tests
-            // For example, using Maven:
-            sh 'mvn test'
+            // classpath configuration for JUnit Test
+            sh 'javac -cp classes -d test-classes book_junitTest/src/BookTest.java'
+
+            //run Junit Test
+            sh 'java -cp test-classes:classes org.junit.runner.JUnitCore book_junitTest.src.BookTest'
+            
          }
       }
       
-      stage('Deploy') {
-         steps {
-            // Deploy your application
-            // For example, using Docker:
-            sh 'docker build -t your-app .'
-            sh 'docker run -d -p 8080:8080 your-app'
+      post {
+         always {
+            // 테스트 결과 파일을 저장하기 위해 아카이브
+            archiveArtifacts 'test_results.txt'
+         }
+         failure {
+            echo 'Build or test failed'
+         }
+         success {
+            echo 'Build and test succeeded'
          }
       }
    }
