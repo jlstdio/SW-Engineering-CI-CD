@@ -17,7 +17,7 @@ pipeline {
       stage('Build') {
          steps {
             // Compile the Java code
-            sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/Book.java'
+            sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/book_junitTest/Book.java'
          }
       }
       
@@ -25,6 +25,7 @@ pipeline {
          steps {
             // Run JUnit Test using the defined environment classpath
             sh "java -cp ${env.CLASSPATH} org.junit.runner.JUnitCore book_junitTest.BookTest > ${WORKSPACE}/test_results.txt"
+
          }
       }
    }
