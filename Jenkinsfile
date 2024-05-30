@@ -23,9 +23,8 @@ pipeline {
       
       stage('Test') {
          steps {
-            // Run JUnit Test using the defined environment classpath
+            // Run JUnit Test using the defined environment classpath'
             sh "java -cp ${env.CLASSPATH} org.junit.runner.JUnitCore book_junitTest.BookTest > ${WORKSPACE}/test_results.txt"
-
          }
       }
    }
