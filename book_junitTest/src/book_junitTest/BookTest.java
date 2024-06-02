@@ -1,4 +1,4 @@
-package book_junitTest;
+package book_junitTest.src.book_junitTest;
 // Test
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,7 +64,7 @@ class BookTest {
         bookLibrary.addBook(3, "Effective C++", "Camil aloha", 2004);
         bookLibrary.addBook(4, "Effective Go", "Joshua Bloch", 2024);
         
-        String result = bookLibrary.search_bs("3");
+        String result = bookLibrary.search_bs(3);
         assertTrue(result.contains("Effective C++"));
         
         System.out.println("testSearchBookById passed");
@@ -72,7 +72,7 @@ class BookTest {
 
     @Test
     public void testSearchBookByIdNotFound() {
-        String result = bookLibrary.search_bs("5");
+        String result = bookLibrary.search_bs(5);
         assertEquals("NO INFO", result);
         
         System.out.println("testSearchBookByIdNotFound passed");
