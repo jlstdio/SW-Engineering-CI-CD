@@ -19,10 +19,10 @@ public class Performance_test {
     public void testSearchBook() {
     	double  beforeTime = System.currentTimeMillis(); 
     	
-        bookLibrary.addBook("1", "Effective Java", "Murakami Haruki", 2011);
-        bookLibrary.addBook("2", "Effective Python", "Don Mills", 2002);
-        bookLibrary.addBook("3", "Effective C++", "Camil aloha", 2004);
-        bookLibrary.addBook("4", "Effective Go", "Joshua Bloch", 2024);
+        bookLibrary.addBook(1, "Effective Java", "Murakami Haruki", 2011);
+        bookLibrary.addBook(2, "Effective Python", "Don Mills", 2002);
+        bookLibrary.addBook(3, "Effective C++", "Camil aloha", 2004);
+        bookLibrary.addBook(4, "Effective Go", "Joshua Bloch", 2024);
         
         String result = bookLibrary.searchBook("Effective Java");
         assertTrue(result.contains("Effective Java"));
@@ -41,10 +41,10 @@ public class Performance_test {
     public void testSearchBookById() {
     	double beforeTime = System.currentTimeMillis(); 
     	
-        bookLibrary.addBook("1", "Effective Java", "Murakami Haruki", 2011);
-        bookLibrary.addBook("2", "Effective Python", "Don Mills", 2002);
-        bookLibrary.addBook("3", "Effective C++", "Camil aloha", 2004);
-        bookLibrary.addBook("4", "Effective Go", "Joshua Bloch", 2024);
+        bookLibrary.addBook(1, "Effective Java", "Murakami Haruki", 2011);
+        bookLibrary.addBook(2, "Effective Python", "Don Mills", 2002);
+        bookLibrary.addBook(3, "Effective C++", "Camil aloha", 2004);
+        bookLibrary.addBook(4, "Effective Go", "Joshua Bloch", 2024);
         
         String result = bookLibrary.search_bs("3");
         assertTrue(result.contains("Effective C++"));

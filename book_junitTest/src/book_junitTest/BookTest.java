@@ -17,7 +17,7 @@ class BookTest {
 	// Test addBook()
 	@Test
     public void testAddBook() {
-        boolean result = bookLibrary.addBook("1", "Effective Java", "Joshua Bloch", 2008);
+        boolean result = bookLibrary.addBook(1, "Effective Java", "Joshua Bloch", 2008);
         assertTrue(result);
         System.out.println("test add book passed");
     }
@@ -25,7 +25,7 @@ class BookTest {
 	// Test searchBook()
     @Test
     public void testSearchBook() {
-        bookLibrary.addBook("1", "Effective Java", "Joshua Bloch", 2008);
+        bookLibrary.addBook(1, "Effective Java", "Joshua Bloch", 2008);
         String result = bookLibrary.searchBook("Effective Java");
         assertTrue(result.contains("Effective Java"));
         
@@ -42,7 +42,7 @@ class BookTest {
     // Test removeBook()
     @Test
     public void testRemoveBook() {
-        bookLibrary.addBook("1", "Effective Java", "Joshua Bloch", 2008);
+        bookLibrary.addBook(1, "Effective Java", "Joshua Bloch", 2008);
         boolean result = bookLibrary.removeBook("Effective Java");
         assertTrue(result);
         
@@ -59,10 +59,10 @@ class BookTest {
     // Test search_bs()
     @Test
     public void testSearchBookById() {
-        bookLibrary.addBook("1", "Effective Java", "Murakami Haruki", 2011);
-        bookLibrary.addBook("2", "Effective Python", "Don Mills", 2002);
-        bookLibrary.addBook("3", "Effective C++", "Camil aloha", 2004);
-        bookLibrary.addBook("4", "Effective Go", "Joshua Bloch", 2024);
+        bookLibrary.addBook(1, "Effective Java", "Murakami Haruki", 2011);
+        bookLibrary.addBook(2, "Effective Python", "Don Mills", 2002);
+        bookLibrary.addBook(3, "Effective C++", "Camil aloha", 2004);
+        bookLibrary.addBook(4, "Effective Go", "Joshua Bloch", 2024);
         
         String result = bookLibrary.search_bs("3");
         assertTrue(result.contains("Effective C++"));
