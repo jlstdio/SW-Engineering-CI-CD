@@ -1,4 +1,4 @@
-package book_junitTest;
+package book_junitTest.src.book_junitTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -46,7 +46,7 @@ public class Performance_test {
         bookLibrary.addBook(3, "Effective C++", "Camil aloha", 2004);
         bookLibrary.addBook(4, "Effective Go", "Joshua Bloch", 2024);
         
-        String result = bookLibrary.search_bs("3");
+        String result = bookLibrary.search_bs(3);
         assertTrue(result.contains("Effective C++"));
         
         double afterTime = System.currentTimeMillis(); // 코드 실행 후 시간

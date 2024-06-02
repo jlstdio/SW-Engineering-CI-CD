@@ -1,4 +1,4 @@
-package book_junitTest;
+package book_junitTest.src.book_junitTest;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -80,10 +80,8 @@ public class Book {
         return false;
     }
 
-    // Search Book by book's code (binary search)
+    // Search Book by book id 
     public String search_bs(int id) {
-        // Sort the list before performing binary search
-       
         int low = 0;
         int high = bookList.size() - 1;
         while (low <= high) {
