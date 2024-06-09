@@ -9,7 +9,6 @@ pipeline {
    stages {
       stage('Checkout') {
          steps {
-            // Dynamically check out the current branch or specify the correct branch name
             checkout scm
          }
       }
@@ -18,10 +17,8 @@ pipeline {
          steps {
             script {
                 if (isUnix()) {
-                    // Compile the Java code on Unix/Linux
                     sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/book_junitTest/Book.java'
                 } else {
-                    // Compile the Java code on Windows
                     bat 'javac -encoding UTF-8 -d ${WORKSPACE}\\classes book_junitTest\\src\\book_junitTest\\Book.java'
                 }
             }
@@ -32,10 +29,8 @@ pipeline {
          steps {
             script {
                 if (isUnix()) {
-                    // Run JUnit Test on Unix/Linux
                     sh 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}/test-results > ${WORKSPACE}/test_results.txt'
                 } else {
-                    // Run JUnit Test on Windows
                     bat 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}\\test-results > ${WORKSPACE}\\test_results.txt'
                 }
             }
@@ -45,7 +40,6 @@ pipeline {
    
    post {
       always {
-         // Archive test results and artifacts, dynamically adapted for OS
          archiveArtifacts artifacts: "${isUnix() ? '**/test-results/*.xml, test_results.txt' : '**\\test-results\\*.xml, test_results.txt'}", onlyIfSuccessful: true
       }
       failure {
@@ -53,6 +47,14 @@ pipeline {
       }
       success {
          echo 'Build and test succeeded'
+         emailext (
+            subject: "Jenkins Build Success: ${env.JOB_NAME}",
+            body: """<p>GOOD NEWS!</p>
+                     <p>The build was successful.</p>
+                     <p>See the results <a href="${env.BUILD_URL}">here</a>.</p>""",
+            recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+            to: 'neo81389@gmail.com'
+         )
       }
    }
 }
