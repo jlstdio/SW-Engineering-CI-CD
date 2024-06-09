@@ -47,14 +47,6 @@ pipeline {
       }
       success {
          echo 'Build and test succeeded'
-         emailext (
-            subject: "Jenkins Build Success: ${env.JOB_NAME}",
-            body: """<p>GOOD NEWS!</p>
-                     <p>The build was successful.</p>
-                     <p>See the results <a href="${env.BUILD_URL}">here</a>.</p>""",
-            recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-            to: 'neo81389@gmail.com'
-         )
       }
    }
 }
