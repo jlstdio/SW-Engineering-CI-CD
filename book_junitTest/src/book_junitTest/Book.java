@@ -1,4 +1,4 @@
-package book_junitTest.src.book_junitTest;
+package book_junitTest;
 
 import java.util.ArrayList;
 import java.util.Collections;
