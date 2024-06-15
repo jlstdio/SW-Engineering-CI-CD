@@ -1,7 +1,6 @@
-package book_junitTest.src.book_junitTest;
-// Test
-import static org.junit.jupiter.api.Assertions.*;
+package book_junitTest;
 
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
