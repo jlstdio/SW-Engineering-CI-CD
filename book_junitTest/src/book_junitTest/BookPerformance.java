@@ -3,7 +3,6 @@ package book_junitTest.src.book_junitTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import book_junitTest.Book;
 
 public class BookPerformance {
     

@@ -13,49 +13,25 @@ pipeline {
          }
       }
       
-      stage('Build For Book') {
+      stage('Build') {
          steps {
             script {
                 if (isUnix()) {
-                    sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/book_junitTest/Book.java'                    
+                    sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/book_junitTest/Book.java book_junitTest/src/book_junitTest/BookPerformance.java'                    
                 } else {
-                    bat 'javac -encoding UTF-8 -d ${WORKSPACE}\\classes book_junitTest\\src\\book_junitTest\\Book.java'
+                    bat 'javac -encoding UTF-8 -d ${WORKSPACE}\\classes book_junitTest\\src\\book_junitTest\\Book.java book_junitTest/src/book_junitTest/BookPerformance.java'
                 }
             }
          }
       }
       
-      stage('Test For Book') {
+      stage('Test') {
          steps {
             script {
                 if (isUnix()) {
                     sh 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}/test-results > ${WORKSPACE}/test_results_for_book.txt'
                 } else {
                     bat 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}\\test-results > ${WORKSPACE}\\test_results_for_book.txt'
-                }
-            }
-         }
-      }
-
-      stage('Build For BookPerformance') {
-         steps {
-            script {
-                if (isUnix()) {
-                    sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/book_junitTest/BookPerformance.java'
-                } else {
-                    bat 'javac -encoding UTF-8 -d ${WORKSPACE}\\classes book_junitTest\\src\\book_junitTest\\BookPerformance.java'
-                }
-            }
-         }
-      }
-      
-      stage('Test For BookPerformance') {
-         steps {
-            script {
-                if (isUnix()) {
-                    sh 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}/test-results > ${WORKSPACE}/test_results_for_bookperformance.txt'
-                } else {
-                    bat 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}\\test-results > ${WORKSPACE}\\test_results_for_bookperformance.txt'
                 }
             }
          }
