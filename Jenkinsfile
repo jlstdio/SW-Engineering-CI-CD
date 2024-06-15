@@ -13,7 +13,7 @@ pipeline {
          }
       }
       
-      stage('Build For Book.java') {
+      stage('Build For Book') {
          steps {
             script {
                 if (isUnix()) {
@@ -25,7 +25,7 @@ pipeline {
          }
       }
       
-      stage('Test') {
+      stage('Test For Book') {
          steps {
             script {
                 if (isUnix()) {
@@ -37,7 +37,7 @@ pipeline {
          }
       }
 
-      stage('Build For BookPerformance.java') {
+      stage('Build For BookPerformance') {
          steps {
             script {
                 if (isUnix()) {
@@ -49,7 +49,7 @@ pipeline {
          }
       }
       
-      stage('Test') {
+      stage('Test For BookPerformance') {
          steps {
             script {
                 if (isUnix()) {
