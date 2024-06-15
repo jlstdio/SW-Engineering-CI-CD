@@ -17,9 +17,9 @@ pipeline {
          steps {
             script {
                 if (isUnix()) {
-                    sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/book_junitTest/Book.java book_junitTest/src/book_junitTest/BookPerformance.java'                    
+                    sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/book_junitTest/Book.java'                    
                 } else {
-                    bat 'javac -encoding UTF-8 -d ${WORKSPACE}\\classes book_junitTest\\src\\book_junitTest\\Book.java book_junitTest/src/book_junitTest/BookPerformance.java'
+                    bat 'javac -encoding UTF-8 -d ${WORKSPACE}\\classes book_junitTest\\src\\book_junitTest\\Book.java'
                 }
             }
          }
