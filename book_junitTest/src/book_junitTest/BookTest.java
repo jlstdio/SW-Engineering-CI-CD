@@ -1,4 +1,4 @@
-package book_junitTest;
+package book_junitTest.src.book_junitTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
