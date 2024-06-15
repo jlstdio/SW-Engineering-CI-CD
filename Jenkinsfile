@@ -3,7 +3,7 @@ pipeline {
    
    environment {
        // Define classpath in the environment section dynamically based on the OS
-       CLASSPATH = "${isUnix() ? '${WORKSPACE}/classes:${WORKSPACE}/lib/*:/Users/joonheelee/eclipse/plugins/junit-platform-console-standalone-1.7.1.jar' : '${WORKSPACE}\\classes;${WORKSPACE}\\lib\\*;C:\\Users\\joonheelee\\eclipse\\plugins\\junit-platform-console-standalone-1.7.1.jar'}"
+       CLASSPATH = "${isUnix() ? '${WORKSPACE}/classes:${WORKSPACE}/lib/*:/Users/gimdaegyeom/eclipse/java-2024-03/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.equinox.launcher_1.6.700.v20240213-1244.jar' : '${WORKSPACE}\\classes;${WORKSPACE}\Users/gimdaegyeom/eclipse/java-2024-03/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.equinox.launcher_1.6.700.v20240213-1244.jar'}"
    }
 
    stages {
