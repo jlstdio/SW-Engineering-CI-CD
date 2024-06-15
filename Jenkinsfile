@@ -13,11 +13,11 @@ pipeline {
          }
       }
       
-      stage('Build') {
+      stage('Build For Book.java') {
          steps {
             script {
                 if (isUnix()) {
-                    sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/book_junitTest/Book.java'
+                    sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/book_junitTest/Book.java'                    
                 } else {
                     bat 'javac -encoding UTF-8 -d ${WORKSPACE}\\classes book_junitTest\\src\\book_junitTest\\Book.java'
                 }
@@ -29,9 +29,33 @@ pipeline {
          steps {
             script {
                 if (isUnix()) {
-                    sh 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}/test-results > ${WORKSPACE}/test_results.txt'
+                    sh 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}/test-results > ${WORKSPACE}/test_results_for_book.txt'
                 } else {
-                    bat 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}\\test-results > ${WORKSPACE}\\test_results.txt'
+                    bat 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}\\test-results > ${WORKSPACE}\\test_results_for_book.txt'
+                }
+            }
+         }
+      }
+
+      stage('Build For BookPerformance.java') {
+         steps {
+            script {
+                if (isUnix()) {
+                    sh 'javac -encoding UTF-8 -d ${WORKSPACE}/classes book_junitTest/src/book_junitTest/BookPerformance.java'
+                } else {
+                    bat 'javac -encoding UTF-8 -d ${WORKSPACE}\\classes book_junitTest\\src\\book_junitTest\\BookPerformance.java'
+                }
+            }
+         }
+      }
+      
+      stage('Test') {
+         steps {
+            script {
+                if (isUnix()) {
+                    sh 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}/test-results > ${WORKSPACE}/test_results_for_bookperformance.txt'
+                } else {
+                    bat 'java -cp ${CLASSPATH} org.junit.platform.console.ConsoleLauncher --scan-class-path --reports-dir=${WORKSPACE}\\test-results > ${WORKSPACE}\\test_results_for_bookperformance.txt'
                 }
             }
          }
