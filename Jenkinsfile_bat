@@ -3,7 +3,7 @@ pipeline {
 
    environment {
        // Define classpath in the environment section for Windows
-       CLASSPATH = "${WORKSPACE}\\classes;${WORKSPACE}\\lib\\*;C:\\Users\\joonheelee\\eclipse\\plugins\\junit-platform-console-standalone-1.7.1.jar"
+       CLASSPATH = "${WORKSPACE}\\classes;${WORKSPACE}\\lib\\*;C:\\eclipse\\plugins\\junit-platform-console-standalone-1.7.1.jar"
    }
 
    stages {
